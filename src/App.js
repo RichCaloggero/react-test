@@ -5,7 +5,15 @@ import './App.css';
 class App extends Component {
   constructor (props) {
     super (props);
-    this.state = {flag: false};
+    this.state = {index: -1};
+    this.strings = [
+    'simple',
+    'two words',
+    'this has three',
+    'this string has four',
+    'this string has five words',
+    'are you bored yet, because I sure am',
+    ];
     this.handleClick = this.handleClick.bind(this);
   } // constructor
 
@@ -27,13 +35,12 @@ class App extends Component {
   } // render
 
   handleClick () {
-    let flag = !this.state.flag;
-    this.setState({flag});
+    const index = (this.state.index + 1) % this.strings.length;
+    this.setState({index});
   } // handleClick
 
-  message (flag) {
-    if (flag) return 'A value';
-    else return 'No values';
+  message (index) {
+    return this.strings[this.state.index];
   } // message
   
 } // class App
