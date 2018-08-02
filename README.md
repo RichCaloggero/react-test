@@ -6,7 +6,9 @@ The react app can be seen running here:
 
 https://RichCaloggero.github.io/react-test/build/
 
-Go to the above URL, and perform the following steps using Firefox and the NVDA screen reader.
+Go to the above URL, and perform the following steps using Firefox or chrome with the NVDA screen reader.
+
+_Note: the behavior only seems to show up with NVDA, in either Chrome or firefox. Jaws and VoiceOver do not exhibit the behavior, regardless of browser used._.
 
 ## Test 1
 
@@ -33,6 +35,7 @@ The native DOM implementation can be seen running here:
 https://RichCaloggero.github.io/react-test/nativeDomImplementation.html
 
 Same as above, accept that using Firefox+NVDA, each message is spoken at most once each time the button is clicked.
+
 
 
 The render function is as follows:
