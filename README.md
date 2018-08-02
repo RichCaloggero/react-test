@@ -1,4 +1,4 @@
-This repository contains a very simple react app which uses a live region to cause a screen reader to announce various messages when a button is clicked.
+This repository contains a very simple react app which uses a [live region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) to cause a screen reader to announce various messages when a button is clicked.
 
 However, react seems to update the DOM in such a way as to cause the screen reader to repeat the message, in some cases as many as 5 or 6 times in succession.
 
