@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>Native DOM Implementation</title>
+  </head>
+  <body>
+  <h1>Native DOM Implementation</h1>
+
+<div class="root">
+<button id="click-me">Click Me</button>
+<div id="message" aria-live="polite" aria-atomic="true">
+</div>
+</div>
+
+<script>
+const $ = document.querySelector.bind(document);
+const strings = [
+    'simple',
+    'two words',
+    'this has three',
+    'this string has four',
+    'this string has five words',
+    'are you bored yet, because I sure am',
+    ];
+    
+let index = -1;
+$("#click-me").addEventListener("click", () => {
+index = (index + 1) % strings.length;
+$("#message").textContent = strings[index];
+});
+
+</script>
+
+</body>
+</html>

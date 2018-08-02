@@ -2,7 +2,7 @@ This repository contains a very simple react app which uses a live region to cau
 
 However, react seems to update the DOM in such a way as to cause the screen reader to repeat the message, in some cases as many as 5 or 6 times in succession.
 
-The app can be seen running here:
+The react app can be seen running here:
 
 https://RichCaloggero.github.io/react-test/build/
 
@@ -13,6 +13,12 @@ https://RichCaloggero.github.io/react-test/build/
 	+ each message should repeat once
 - actual behavior:
 	+ a different message is spoken, in some cases more than once, each time the button is clicked
+
+The native DOM implementation can be seen running here:
+
+https://RichCaloggero.github.io/react-test/nativeDomImplementation.html
+
+Same as above, accept that using Firefox+NVDA, each message is spoken at most once each time the button is clicked.
 
 
 The render function is as follows:
