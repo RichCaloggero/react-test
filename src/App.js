@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img alt="" src={logo} className="App-logo" alt="logo" />
+          <img alt="" src={logo} className="App-logo" />
           <h1 className="App-title">React and live regions</h1>
         </header>
           <label>Direct to dom: <input type="checkbox" onChange={this.handleChange} /></label>
