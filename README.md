@@ -6,13 +6,27 @@ The react app can be seen running here:
 
 https://RichCaloggero.github.io/react-test/build/
 
-- goto the above URL using Firefox and the NVDA screen reader
-- click the button
-- expected behavior:
-	+ hear a different message spoken each time the button is clicked
-	+ each message should repeat once
-- actual behavior:
-	+ a different message is spoken, in some cases more than once, each time the button is clicked
+Go to the above URL, and perform the following steps using Firefox and the NVDA screen reader.
+
+## Test 1
+
+1. click the button
+  + expected behavior: hear a different message spoken each time the button is clicked; each message should repeat once
+  + actual behavior: message is spoken, in comse cases more than once, each time the button is clicked
+2. now check the "direct to DOM" checkbox and repeat
+  + all messages are spoken only once
+
+## Test 2
+
+1. uncheck the checkbox and enter some text in the input box (for instance "my own text") and click the button
+  + the message is spoken, perhaps more than once
+2. add a character to the end of the text (such as "1") and click the button
+  + new message is spoken (perhaps more than once)
+3. now delete the extra character and click
+  + message is *not* spoken
+4. check the "direct to DOM" checkbox and repeat steps 1 through 3 above
+  + all text will be spoken, even after deleting the extra characters (i.e. step 3 above)
+
 
 The native DOM implementation can be seen running here:
 
@@ -28,14 +42,16 @@ render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <img alt="" src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">React and live regions</h1>
         </header>
-        <button onClick={this.handleClick}>
+          <label>Direct to dom: <input type="checkbox" onChange={this.handleChange} /></label>
+          <label>Text: <input ref={this.inputRef} type="text"/></label>
+          <button onClick={this.handleClick}>
           Click Me
         </button>
-        <div aria-live="polite" aria-atomic="true">
-          {this.message(this.state.flag)}
+        <div ref={this.messageRef} aria-live="polite" aria-atomic="true">
+          {this.state.message}
         </div>
       </div>
     );

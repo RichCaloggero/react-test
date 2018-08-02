@@ -5,7 +5,7 @@ import './App.css';
 class App extends Component {
   constructor (props) {
     super (props);
-    this.state = {index: -1};
+    this.state = {message: ''};
     this.strings = [
     'simple',
     'two words',
@@ -13,36 +13,64 @@ class App extends Component {
     'this string has four',
     'this string has five words',
     'are you bored yet, because I sure am',
+    'oneLastTest--ThisHasNoBlanksInItAndIsFairlyLengthy'
     ];
+    this.index = -1;
+    
+    this.inputRef = React.createRef();
+    this.messageRef = React.createRef();
+    this.directToDom = false;
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   } // constructor
+
+
+  message () {
+    const text = this.inputRef.current.value;
+    if (text.length === 0) this.index = (this.index+1) % this.strings.length;
+    const index = this.index;
+    return text.length > 0? text : this.strings[index];
+  } // message
+
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <img alt="" src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">React and live regions</h1>
         </header>
-        <button onClick={this.handleClick}>
+          <label>Direct to dom: <input type="checkbox" onChange={this.handleChange} /></label>
+          <label>Text: <input ref={this.inputRef} type="text"/></label>
+          <button onClick={this.handleClick}>
           Click Me
         </button>
-        <div aria-live="polite" aria-atomic="true">
-          {this.message(this.state.flag)}
+        <div ref={this.messageRef} aria-live="polite" aria-atomic="true">
+          {this.state.message}
         </div>
       </div>
     );
   } // render
 
+
+  handleChange (e) {
+    this.directToDom = e.target.checked;
+  } // handleChange
+  
   handleClick () {
-    const index = (this.state.index + 1) % this.strings.length;
-    this.setState({index});
+    const message = this.message();
+    
+    if (this.directToDom) {
+      this.messageRef.current.textContent = message;
+      console.log('direct: ', message);
+    } else {
+      const text = this.inputRef.current.value;
+      this.setState({message});
+    } // if
+    
   } // handleClick
 
-  message (index) {
-    return this.strings[this.state.index];
-  } // message
-  
+
 } // class App
 
 export default App;
