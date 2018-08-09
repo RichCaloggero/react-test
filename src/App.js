@@ -45,7 +45,7 @@ class App extends Component {
           <button onClick={this.handleClick}>
           Click Me
         </button>
-        <div ref={this.messageRef} aria-live="polite" aria-atomic="true">
+        <div id="status" ref={this.messageRef} aria-live="polite" aria-atomic="true">
           {this.state.message}
         </div>
       </div>
@@ -60,6 +60,7 @@ class App extends Component {
   handleClick () {
     const message = this.message();
     
+    global.setupObserver(this.messageRef.current);
     if (this.directToDom) {
       this.messageRef.current.textContent = message;
       console.log('direct: ', message);
@@ -72,5 +73,6 @@ class App extends Component {
 
 
 } // class App
+
 
 export default App;
