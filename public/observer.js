@@ -1,28 +1,28 @@
 window.setupObserver = function (node) {
-const config = { childList: true, characterData: true, childListOldValue: true, characterDataOldValue: true };
+const $ = document.querySelector.bind(document);
+const config = { childList: true, subtree: true, characterData: true, childListOldValue: true, characterDataOldValue: true };
 function observerCallback(mutationsList) {
     mutationsList.forEach(mutation => {
-        console.log ("mutation type: ", mutation.type);
-      if (mutation.addedNodes.length > 0) console.log("added: ", mutation.addedNodes[0].textContent);
-      if (mutation.removedNodes.length > 0) console.log("removed: ", mutation.removedNodes[0].textContent);
-      
-      }); // forEach
+let result = "";
+console.log(mutation);
+      if (mutation.addedNodes.length > 0) result += `added:  ${mutation.addedNodes[0].textContent} `;
+      if (mutation.removedNodes.length > 0) result += `removed: ${mutation.removedNodes[0].textContent}`;
+
+	message(result);
+}); // forEach
 
       //observer.disconnect();
       };
 
 let observer = new MutationObserver(observerCallback );
 observer.observe(node, config);
-} // setupObserver
+return observer;
 
-window.message = function (text) {
-console.log (text);
-  /*$("#observe").appendChild(
-document.createTextNode(text)
-);
+function message (text) {
+//console.log (text);
+  $("#observe").innerHTML = `${text}<br>`;
 
-$("#observe").appendChild(document.createElement("br"));
-*/
   } // message
 
-  
+  } // setupObserver
+

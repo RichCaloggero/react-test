@@ -60,7 +60,7 @@ class App extends Component {
   handleClick () {
     const message = this.message();
     
-    global.setupObserver(this.messageRef.current);
+    if (!window.observer) window.observer = window.setupObserver(this.messageRef.current);
     if (this.directToDom) {
       this.messageRef.current.textContent = message;
       console.log('direct: ', message);
